@@ -68,7 +68,12 @@ public class Controller {
                     output = new StringBuilder();
                     result.setText(num1);
                     resize(num1.length());
-                } else if (operator != null) {
+                } else if (output.toString().isEmpty()){
+                    num1 = calculatePercent(num1);
+                    result.setText(num1);
+                    resize(num1.length());
+                }
+                else if (operator != null) {
                     output = new StringBuilder(calculatePercent(output.toString()));
                     result.setText(output.toString());
                     resize(output.length());
@@ -86,6 +91,8 @@ public class Controller {
         String answer;
 
         if (this.operator == null) {
+            if (output.toString().isEmpty())
+                return;
             num1 = output.toString();
             this.operator = operator;
             output = new StringBuilder();
